@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			p, li {
+				font-size: 22px;
+			}
+			
+			table {
+				font-family: arial, sans-serif;
+				border-collapse: collapse;
+				width: 100%;
+			}
+			
+			td, th {
+				border: 1px solid #dddddd;
+				text-align: center;
+				padding: 8px;
+			}
+			
+			tr:nth-child(even) {
+				background-color: #dddddd;
+			}
+			
+			.hl-container {
+			    display: flex;
+			    align-items: center;
+			    justify-content: center;
+				
+			}
+			
+			.hl {
+				border: solid 0.5px black;
+			    align-self: center;
+			    min-width: 50%;
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>DeppFlix</h1>
+		<p>
+			This project will be a RESTful API for an application called “DeppFlix”, which interacts with a non-relational database that stores data about different movies.<br>
+			I'm building it to get familiar with Node.js and overall server-side programming.
+		</p>
+		
+		<br>
+		
+		<h2>Index</h2>
+		<ul>
+			<li>
+				Content
+					<ul>
+						<li>
+							Movies
+						</li>
+						<li>
+							Genres
+						</li>
+						<li>
+							Director
+						</li>
+						<li>
+							References
+						</li>
+					</ul>
+			</li>
+			
+			<br>
+			
+			<li>
+				Methodology
+					<ul>
+						<li>
+							Requests
+						</li>
+						<li>
+							CRUD
+							<ul>
+								<li>
+									Create
+										<ul>
+											<li>
+												Adding Users
+											</li>
+										</ul>
+								</li>
+								<li>
+									Read
+										<ul>
+											<li>
+												Get All Movies
+											</li>
+											<li>
+												Get Movie By Title
+											</li>
+											<li>
+												Get Genre By Name
+											</li>
+											<li>
+												Get Director By Name
+											</li>
+										</ul>
+								</li>
+								<li>
+									Update
+										<ul>
+											<li>
+												Updating Usernames
+											</li>
+											<li>
+												Add Movie To Favourites
+											</li>
+										</ul>
+								</li>
+								<li>
+									Delete
+										<ul>
+											<li>
+												Coming soon..
+											</li>
+										</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		
+		<br>
+		
+		<div class="content-movies">
+			<h2>Content: Movies</h2>
+			<table>
+				<tr>
+					<th>MovieID</th>
+					<th>Title</th>
+					<th>Description</th>
+					<th>GenreID</th>
+					<th>DirectorID</th>
+					<th>Image path (URL)</th>
+					<th>Featured (Y/N)</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>PotC: On Stranger Tides</td>
+					<td>Jack Sparrow and Barbossa embark on a quest to find the elusive fountain of 						youth, only to discover that Blackbeard and his daughter are after it too.</td>
+					<td>1</td>
+					<td>1</td>
+					<td>stranger-tides.png</td>
+					<td>True</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Charlie and the Chocolate Factory</td>
+					<td>A young boy wins a tour through the most magnificent chocolate factory in the 						world, led by the world's most unusual candy maker.</td>
+					<td>2</td>
+					<td>2</td>
+					<td>charlie.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>PotC: Dead Man's Chest</td>
+					<td>Jack Sparrow races to recover the heart of Davy Jones to avoid enslaving his soul to Jones' service, as other friends and foes seek the heart for their own agenda as well.</td>
+					<td>1</td>
+					<td>3</td>
+					<td>dead-man.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Platoon</td>
+					<td>Chris Taylor, a neophyte recruit in Vietnam, finds himself caught in a battle of wills between two sergeants, one good and the other evil. A shrewd examination of the brutality of war and the duality of man in conflict.</td>
+					<td>3</td>
+					<td>4</td>
+					<td>platoon.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Donnie Brasco</td>
+					<td>An FBI undercover agent infiltrates the mob and finds himself identifying more with the mafia life, at the expense of his regular one.</td>
+					<td>3</td>
+					<td>5</td>
+					<td>brasco.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Alice in Wonderland</td>
+					<td>Nineteen-year-old Alice returns to the magical world from her childhood adventure, where she reunites with her old friends and learns of her true destiny: to end the Red Queen's reign of terror.</td>
+					<td>4</td>
+					<td>2</td>
+					<td>alice.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Public Enemies</td>
+					<td>The Feds try to take down notorious American gangsters John Dillinger, Baby Face Nelson, and Pretty Boy Floyd during a booming crime wave in the 1930s.</td>
+					<td>3</td>
+					<td>6</td>
+					<td>enemies.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>A Nightmare on Elm Street</td>
+					<td>Teenager Nancy Thompson must uncover the dark truth concealed by her parents after she and her friends become targets of the spirit of a serial killer with a bladed glove in their dreams, in which if they die, it kills them in real life.</td>
+					<td>5</td>
+					<td>7</td>
+					<td>elmstreet.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>Fear and Loathing in Las Vegas</td>
+					<td>An oddball journalist and his psychopathic lawyer travel to Las Vegas for a series of psychedelic escapades.</td>
+					<td>1</td>
+					<td>8</td>
+					<td>lasvegas.png</td>
+					<td>False</td>
+				</tr>
+				<tr>
+					<td>10</td>
+					<td>Cry-Baby</td>
+					<td>In 1950s Baltimore, a bad boy with a heart of gold wins the love of a good girl, whose boyfriend sets out for revenge.</td>
+					<td>2</td>
+					<td>9</td>
+					<td>crybaby.png</td>
+					<td>False</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br><br>
+		
+		<div class="content-genres">
+			<h2>Content: Genres</h2>
+			<table>
+				<tr>
+					<th>GenreID</th>
+					<th>Name</th>
+					<th>Description</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Adventure</td>
+					<td>Epic quests and breath-taking scenery.. Adventure movies are well-rounded.</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Comedy</td>
+					<td>Need a bit of a laugh? Then this genre is perfect for you.</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Drama</td>
+					<td>If you like drama, here is all of it for you!</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Fantasy</td>
+					<td>The most creative genres of all! Fun for a wide audience.</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Horror</td>
+					<td>You like to be scared? Then you're in the right place...</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br><br>	
+	
+		<div class="content-director">
+			<h2>Content: Directors</h2>
+			<table>
+				<tr>
+					<th>DirectorID</th>
+					<th>Name</th>
+					<th>Bio</th>
+					<th>Birth Year</th>
+					<th>Death Year</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Rob Marshall</td>
+					<td>Rob Marshall was born on October 17, 1960 in Madison, Wisconsin, USA. He is known for Mary Poppins Returns (2018), Chicago (2002) and Into the Woods (2014).</td>
+					<td>1960</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Tim Burton</td>
+					<td>Timothy Walter Burton was born in Burbank, California, to Jean Rae (Erickson), who owned a cat-themed gift shop, and William Reed Burton, who worked for the Burbank Park and Recreation Department. He spent most of his childhood as a recluse, drawing cartoons, and watching old movies (he was especially fond of films with Vincent Price).</td>
+					<td>1958</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Gore Verbinski</td>
+					<td>Gore Verbinski, one of American cinema's most inventive directors who was a punk-rock guitarist as a teenager and had to sell his guitar to buy his first camera, is now the director of Pirates of the Caribbean: Dead Man's Chest (2006) which made the industry record for highest opening weekend of all time ($135,600,000) and grossed over $1 billion.</td>
+					<td>1964</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Oliver Stone</td>
+					<td>Oliver Stone has become known as a master of controversial subjects and a legendary film maker. His films are filled with a variety of film angles and styles, he pushes his actors to give Oscar-worthy performances, and despite his failures, has always returned to success. William Oliver Stone was born in New York City.</td>
+					<td>1946</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Mike Newell</td>
+					<td>Mike Newell attended Cambridge University. Three year training course at Granada Television, with intention of going into theatre. Graduated to directing TV plays, building strong reputation for work with David Hare, David Edgar, Hohn, John Osborne, Jack Rosenthal.</td>
+					<td>1942</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Michael Mann</td>
+					<td>As a director, screenwriter, and producer, four-time Academy Award© nominee Michael Mann has established himself as one of the most innovative and influential filmmakers in American cinema. After writing and directing the Primetime Emmy Award-winning television movie The Jericho Mile (1979), Mann made his feature-film directorial debut with Thief.</td>
+					<td>1943</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Wes Craven</td>
+					<td>Wes Craven has become synonymous with genre bending and innovative horror, challenging audiences with his bold vision. Wesley Earl Craven was born in Cleveland, Ohio, to Caroline (Miller) and Paul Eugene Craven. He had a midwestern suburban upbringing.</td>
+					<td>1939</td>
+					<td>2015</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Terry Gilliam</td>
+					<td>Terry Gilliam was born near Medicine Lake, Minnesota. When he was 12 his family moved to Los Angeles where he became a fan of MAD magazine. In his early twenties he was often stopped by the police who suspected him of being a drug addict and Gilliam had to explain that he worked in advertising.</td>
+					<td>1940</td>
+					<td>-</td>
+				</tr>
+				<tr>
+					<td>9</td>
+					<td>John Waters</td>
+					<td>Growing up in Baltimore in the 1950s, John Waters was not like other children; he was obsessed by violence and gore, both real and on the screen. With his weird counter-culture friends as his cast, he began making silent 8mm and 16mm films in the mid-'60s; he screened these in rented Baltimore church halls to underground audiences drawn by word of mouth and street leafleting campaigns..</td>
+					<td>1946</td>
+					<td>-</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br><br>
+		
+		<div class="content-users">
+			<h2>Content: Users</h2>
+			<table>
+				<tr>
+					<th>UserID</th>
+					<th>Username</th>
+					<th>Password</th>
+					<th>EMail</th>
+					<th>DOB</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Christian</td>
+					<td>MimiIstMeinLiebling123</td>
+					<td>christian@email.com</td>
+					<td>10.02.1962</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Joanna</td>
+					<td>MimiIstGenial123</td>
+					<td>joanna@email.com</td>
+					<td>25.01.1982</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>Vivi</td>
+					<td>MimiIstDieTollste123</td>
+					<td>vivi@email.com</td>
+					<td>12.11.1992</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Leo</td>
+					<td>MimiIstSuper123</td>
+					<td>leo@email.com</td>
+					<td>27.09.1995</td>
+				</tr>
+			</table>
+		</div>
+		
+		<br><br>
+		
+		<div class="content-references">
+			<h2>Content: References</h2>
+			<table>
+				<tr>
+					<th>UserMovieID</th>
+					<th>UserID</th>
+					<th>MovieID</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>4</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>1</td>
+					<td>3</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>2</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>3</td>
+					<td>2</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div class="hl-container">
+			<div class="hl"></div>
+		</div>
+		
+		<div class="method-requests">
+			<h2>Methodolgy: Requests</h2>
+			<table>
+				<tr>
+					<th>Request</th>
+					<th>HTTP Method</th>
+					<th>Endpoint/URL</th>
+					<th>Request Data Format</th>
+					<th>Response Data Format</th>
+				</tr>
+				<tr>
+					<td>Return a list of ALL movies</td>
+					<td>GET</td>
+					<td>/movies</td>
+					<td>None</td>
+					<td>JSON object containing ALL movies</td>
+				</tr>
+				<tr>
+					<td>Return data about specific movie (by title)</td>
+					<td>GET</td>
+					<td>/movies/[title]</td>
+					<td>None</td>
+					<td>JSON object containing data about specific movie</td>
+				</tr>
+				<tr>
+					<td>Return data about a genre (by name/title)</td>
+					<td>GET </td>
+					<td>/movies/genres/[name/title]</td>
+					<td>None</td>
+					<td>JSON object containing data about specific genre</td>
+				</tr>
+				<tr>
+					<td>Return data about a director (by name)</td>
+					<td>GET</td>
+					<td>/movies/directors/[name]</td>
+					<td>None</td>
+					<td>JSON object containing data about specific director</td>
+				</tr>
+				<tr>
+					<td>Allow new users to register</td>
+					<td>POST</td>
+					<td>/user/registration</td>
+					<td>JSON object containing user data</td>
+					<td>JSON object containing given data & allocated username</td>
+				</tr>
+				<tr>
+					<td>Allow users to update their info (username)</td>
+					<td>PUT</td>
+					<td>/user/account</td>
+					<td>None</td>
+					<td>text message: [user info] has been updated</td>
+				</tr>
+				<tr>
+					<td>Allow users to add a movie to their favorites</td>
+					<td>PUT</td>
+					<td>/movies</td>
+					<td>None</td>
+					<td>text message: [movie] has been added</td>
+				</tr>
+				<tr>
+					<td>Allow users to remove a movie from their favorites</td>
+					<td>DELETE</td>
+					<td>/movies/favourites</td>
+					<td>None</td>
+					<td>text message: [movie] has been removed</td>
+				</tr>
+				<tr>
+					<td>Allow existing users to deregister</td>
+					<td>DELETE</td>
+					<td>/user/acccount</td>
+					<td>None</td>
+					<td>text message: your email has been removed</td>
+				</tr>
+			</table>
+		</div>
+		<section class="method-crud">
+			<div class="crud-adding_users">
+				<h2>CRUD: Adding Users</h2>
+				<h3 class="url"> /users</h3>
+				<h4>Method Type: POST</h4>
+				<p>
+					<strong>Description:</strong>
+					<br>
+					Allows users to register by returning a JSON object with specific key values.
+					<br><br>
+					"Username" = String<br>
+					"FavouriteMovies" = Array<br>
+					"id" = String
+				</p>
+				<p>
+					<strong>Query Parameters:</strong>
+					<br>
+					None
+				</p>
+				<p>
+					<strong>Expected Request Data:</strong> 
+					<br>
+					JSON object with data about user.<br>
+					<span class="required">Required</span>: "Username"
+				</p>
+				<h4>Example:</h4>
+				<code class="code">
+					{<br>
+						"Username": "Christian",<br>
+					}
+				</code>
+				<p>
+					<strong>Expected Response Data:</strong> 
+					<br>
+					JSON object with data about user incl. automatically generated ID.
+				</p>
+				<h4>Example:</h4>
+				<code class="code">
+					{<br>
+						"Username": "Christian",<br>
+						"Password": "MimiIstMeinLiebling123,"<br>
+						"Email": "christian@email.com,"<br>
+						"FavouriteMovies": [],<br>
+						"id": "8a757bb9-2eec-46bf-86f0-443ff742cf3a"<br>
+					}
+				</code>
+				<p>
+					<strong>Response Status Codes:</strong>
+				</p>
+				<p>201 (Created): New user has been added</p>
+				<p>400 (Bad Request): User already exists</p>
+			</div>
+			
+			<div class="hl-container">
+				<div class="hl"></div>
+			</div>
+		   
+		    <div class="crud-updating_users">
+				<h2>CRUD: Updating Usernames</h2>
+				<h3 class="url"> /users/:id</h3>
+				<h4>Method Type: POST</h4>
+				<p>
+					<strong>Description:</strong>
+					<br>
+					Allows users to update their username and returns a JSON object with few key values.
+					<br><br>
+					"Username" = String<br>
+					"FavouriteMovies" = Array<br>
+					"id" = Integer<br>
+				</p>
+				<p>
+					<strong>Query Parameters:</strong>
+					<br> "_id"
+				</p>
+				<p>
+					<strong>Expected Request Data:</strong>
+					<br>
+					JSON object with data about user
+				</p>
+				
+				<p>
+					<strong>Required</strong>: 
+					"_id"
+				</p>
+				<h4>Example:</h4>
+				<p>localhost:8080/Christian</p>
+				
+				<br>
+				
+				<code class="code">
+					{<br>
+						"Username": "Christian"<br>
+					}
+				</code>
+				
+				<p>
+					<strong>Expected response data:</strong>
+					<br>
+					JSON object with data about user incl. "_id" with an integer, "Username" with a string and "FavouriteMovies" with an array.</p>
+					<h4>Example:</h4>
+					
+					<code class="code">
+						{<br>
+							"Name": "Christian",<br>
+							"Password": "MimiIstMeinLiebling123,"<br>
+							"Email": "christian@email.com,"<br>
+							"FavouriteMovies": [],<br>
+							"DOB":"1985-02-19"<br>
+							"_id": 8a757bb9-2eec-46bf-86f0-443ff742cf3a,<br>
+						}
+					</code>
+					
+					<p>
+						<strong>Response status codes:</strong>
+					</p>
+					<p>200 OK: New user has been added</p>
+					<p>500 Internal Server Error: Something went wrong!</p>
+				</div>
+				
+				<div class="hl-container">
+					<div class="hl"></div>
+				</div>
+				
+			    <div class="crud-movie_favourite">
+					<h2>CRUD: Add Movie To Favourites</h2>
+					<h3 class="url"> /users/:id/movieTitle</h3>
+					<h4>Method Type: POST</h4>
+					
+					<p>
+						<strong>Description:</strong>
+						<br>
+						Allows users to add movie to their favorite list and returns a JSON object with user data incl. an updated FavouriteMovies array.
+					</p>
+					
+					<p>
+						<strong>Query Parameters:</strong>
+						<br> "_id", ":movieTitle"
+					</p>
+					<p>
+						<strong>Expected Request Data:</strong>
+						<br>
+						Required: "_id", ":movieTitle"
+					</p>
+					
+					<h4>Example:</h4>
+					<p>localhost:8080/Christian/movies/Platoon</p>
+					<p>
+						<strong>Expected Response Data:</strong>
+						<br>
+						JSON object with updated list of movies in FavouriteMovies array.
+					</p>
+					
+					<code class="code">
+						{
+							Platoon has been added to Christian's FavouriteMovies array
+						}
+					</code>
+					
+					<p>
+						<strong>Response status codes:</strong>
+					</p>
+					<p>200 OK: Updated User's FavouriteMovies</p>
+					<p>500 Internal Server Error: Something went wrong!</p>
+				</div>
+				
+				<div class="hl-container">
+					<div class="hl"></div>
+				</div>
+				
+			    <div class="crud-get_movies">
+					<h2>CRUD: Get All Movies</h2>
+					<h3 class="url"> /movies</h3>
+					<h4>Method Type: GET</h4>
+					
+					<p>
+						<strong>Description:</strong>
+						<br>
+						Allows users to get whole list of movies and returns an array with list of objects.<br>
+						Each object contains data about movies.
+					</p>
+					
+					<p>
+						<strong>Query Parameters:</strong>
+						<br>
+						None
+					</p>
+					
+					<p>
+						<strong>Expected Request Data:</strong>
+						<br>
+						Required: /movies
+					</p>
+					
+					<h4>Example:</h4>
+					<p>localhost:8080/movies</p>
+					<p>
+						<strong>Expected response data:</strong>
+						<br>
+						An array with list of movies.<br>
+						Each object contains data about movies and every key comes with a string value.
+					</p>
+					
+					<h4>Example:</h4>
+					
+					<code class="code">
+						[<br>
+						{<br>
+							"Title": "Platoon",<br>
+							"Description": "...", <br>
+							"Genre": { <br>
+								"Name": "Drama",<br>
+								"Description": "..."
+							}, 
+							<br>
+							"Director": { <br>
+								"Name": "...", <br>
+								"Bio": "...",<br>
+								"Birth":"July 30, 1970"
+							}, 
+							<br>
+							"ImagePath": "...",<br>
+							"Featured":true<br>
+						}
+					</code>
+					
+					<p>
+						<strong>Response Status Codes:</strong>
+					</p>
+					
+					<p>200 OK</p>
+					<p>500 Internal server error: Something went wrong!</p>
+				</div>
+			    
+				<div class="hl-container">
+					<div class="hl"></div>
+				</div>
+				
+				<div class="crud-search_movies">
+					<h2>CRUD: Get Movie By Title</h2>
+					<h3 class="url"> /movies/:movieTitle</h3>
+					<h4> Method Type: GET</h4>
+					
+					<p>
+						<strong>Description:</strong>
+						<br>
+						Allows users to search a movie by title and returns an object with data about specific movie.
+					</p>
+					
+					<p>
+						<strong>Query Parameters:</strong>
+						<br>
+						 ":movieTitle"
+					</p>
+					
+					<p>
+						<strong>Expected Request Data:</strong>
+						<br>
+						Required: ":movieTitle"
+					</p>
+					
+					<h4>Example:</h4>
+					<p>localhost:8080/movies/Platoon</p>
+					
+					<p>
+						<strong>Expected Response Data:</strong>
+						<br>
+						An object containing data about specific movie. Every key is described with value of a string.
+					</p>
+					
+					<h4>Example:</h4>
+					<code class="code">
+						{ <br>
+							"Title": "Platoon",<br>
+							"Description": "...",<br>
+							"Genre": {
+								"Name": "Drama",
+								"Description": "...",
+							},
+							<br>
+							"Director": {
+								"Name": "...",<br>
+								"Bio": "...",<br>
+								"Born": "..."<br>
+							}, 
+							<br>
+							"ImagePath": "...",<br>
+							"Featured": true
+						}
+					</code>
+					
+					<p>
+						<strong>Response Status Codes:</strong>
+					</p>
+					<p>201 OK: JSON object</p>
+					<p>500 Internal server error: Something went wrong!</p>
+				</div>
+				
+				<div class="hl-container">
+					<div class="hl"></div>
+				</div>
+				
+				<div class="crud-find_genre">
+					<h2>CRUD: Get Genre By Name</h2>
+					<h3 class="url"> /movies/genre/:genreName</h3>
+					<h4> Method Type: GET</h4>
+					
+					<p>
+						<strong>Description:</strong>
+						<br>
+						Allows users to search for a genre and returns an object with data about specific genre.
+					</p>
+					
+					<p>
+						<strong>Query Parameters:</strong> 
+						<br>":genreName"</p>
+					<p>
+						<strong>Expected Request Data:</strong>
+						<br>
+						Required: ":genreName"
+					</p>
+					
+					<h4>Example:</h4>
+					<p>localhost:8080/movies/genre/Drama</p>
+					
+					<p>
+						<strong>Expected Response Data:</strong>
+						<br>
+						An object containing data about specific genre. Every key is described with a string.
+					</p>
+					
+					<h4>Example:</h4>
+					
+					<code class="code">
+						{ <br>
+							"Name": "Drama",<br>
+							"Description": "..."
+						}
+					</code>
+					
+					<p>
+						<strong>Response Status Codes:</strong>
+					</p>
+					
+					<p>200 OK: JSON object</p>
+					<p>400 Bad Request: Invalid Genre</p>
+					<p>500 Internal Server Error: Something went wrong!</p>
+				</div>
+				
+				<div class="hl-container">
+					<div class="hl"></div>
+				</div>
+				
+				<div class="crud-get_director">
+					<h2> CRUD: Get Director By Name</h2>
+					<h3 class="url"> /movies/directors/:directorName</h3>
+					<h4> Method Type: GET </h4>
+					
+					<p>
+						<strong>Description:</strong>
+						<br>
+						Allows users to search for a specific director and returns an object with data about specific director.
+					</p>
+					
+					<p>
+						<strong>Query Parameters:</strong> 
+						<br> ":directorName"
+					</p>
+					
+					<p>
+						<strong>Expected Request Data:</strong>
+						<br>
+						Required: ":directorName"
+					</p>
+					
+					<h4>Example:</h4>
+					<p>localhost:8080/movies/directors/Tim%20Burton</p>
+					<p>
+						<strong>Expected Response Data:</strong>
+						<br>
+						An object containing data about specific director.
+						<br>
+						Every key is described with a string value.
+					</p>
+					
+					<h4>Example:</h4>
+					
+					<code class="code">
+						{<br>
+							"Name":"Tim Burton",<br>
+							"Bio": "...",<br>
+							"Birth": "..."<br>
+						}
+					</code>
+					
+					<p>
+						<strong>Response Status Codes:</strong>
+					</p>
+					
+					<p>200 OK: JSON object</p>
+					<p>400 Bad Request: Director not found!</p>
+					<p>500 Internal Server Error: Something went wrong!</p>
+				</div>
+			</section>
+	</body>
+</html>
