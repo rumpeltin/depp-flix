@@ -5,8 +5,8 @@ const express = require('express');
   bodyParser = require('body-parser');
   cors = require('cors');
   bcrypt = require('bcrypt');
-  { check, validationResult } = require('express-validator');
-
+ 
+const { check, validationResult } = require('express-validator');
 const app = express();
 
 // importing mongoose database
@@ -147,12 +147,12 @@ app.post('/users',
 	check('Password', 'Password is required').not().isEmpty(),
 	check('Password', 'Password must be at least 6 characters').isLength({min: 6}),
 	check('Email', 'Email does not appear to be valid.').isEmail()
-] (req, res) => {
+], (req, res) => {
 	
 	// check validation object for errors
 	let errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).json{ errors: errors.array() }); // he rest of the code will not execute if an error occurs
+		return res.status(422).json({ errors: errors.array() }); // he rest of the code will not execute if an error occurs
 	} 
 	
 	let hashedPassword= users.hashPassword(req.body.Password);
@@ -213,13 +213,12 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
     check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
     check('Email', 'Email does not appear to be valid').isEmail()
-]
-(req, res) => {
+], (req, res) => {
 	
 	// check validation object for errors
 	let errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(422).json{ errors: errors.array() }); // the rest of the code will not execute if an error occurs
+		return res.status(422).json({ errors: errors.array() }); // the rest of the code will not execute if an error occurs
 	} 
 	
 	let hashedPassword= users.hashPassword(req.body.Password);
