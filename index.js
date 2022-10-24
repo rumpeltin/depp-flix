@@ -16,7 +16,10 @@ const Models = require('./models.js');
 const movies = Models.movie;
 const users = Models.user;
 
-mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });
+// connect to database
+
+// mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });			// local database
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });		// online database
 
 // middleware
 app.use(morgan('common'));
