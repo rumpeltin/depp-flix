@@ -4,7 +4,6 @@ const express = require('express');
   morgan = require('morgan');
   bodyParser = require('body-parser');
   cors = require('cors');
-  bcrypt = require('bcryptjs');
  
 const { check, validationResult } = require('express-validator');
 const app = express();
