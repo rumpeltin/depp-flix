@@ -17,8 +17,8 @@ const movies = Models.movie;
 const users = Models.user;
 
 // connect to database
-// mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });			// local database
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });		// online database
+mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });			// local database
+// mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });		// online database
 
 // middleware
 app.use(morgan('common'));
@@ -212,9 +212,9 @@ JSON format:
 app.put('/users/:Username', passport.authenticate('jwt', {session: false}), 
 [
 	check('Username', 'Username is required').isLength({min: 5}),
-    check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not appear to be valid').isEmail()
+  check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').not().isEmpty(),
+  check('Email', 'Email does not appear to be valid').isEmail()
 ], (req, res) => {
 	
 	// check validation object for errors
@@ -293,3 +293,6 @@ const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
  console.log('Listening on Port ' + port);
 });
+
+// vercel
+module.exports = app;
