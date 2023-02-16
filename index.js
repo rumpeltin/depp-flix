@@ -4,6 +4,7 @@ const express = require('express');
   morgan = require('morgan');
   bodyParser = require('body-parser');
   cors = require('cors');
+  bcrypt = require('bcryptjs');
  
 const { check, validationResult } = require('express-validator');
 const app = express();
@@ -159,7 +160,7 @@ app.post('/users',
 		return res.status(422).json({ errors: errors.array() }); // he rest of the code will not execute if an error occurs
 	} 
 	
-	// let hashedPassword= users.hashPassword(req.body.Password);
+	let hashedPassword= users.hashPassword(req.body.Password);
 	users.findOne({ Username: req.body.Username }) // searches for a user with the requested username
     .then((user) => {
       if (user) { // send an error response if user already exists
@@ -168,7 +169,7 @@ app.post('/users',
         users
           .create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             DOB: req.body.DOB
           })
@@ -225,11 +226,11 @@ app.put('/users/:Username', passport.authenticate('jwt', {session: false}),
 		return res.status(422).json({ errors: errors.array() }); // the rest of the code will not execute if an error occurs
 	} 
 	
-	// let hashedPassword= users.hashPassword(req.body.Password);
+	let hashedPassword= users.hashPassword(req.body.Password);
 	users.findOneAndUpdate({ Username: req.params.Username }, { $set:
 		{
 			Username: req.body.Username,
-			Password: req.body.Password,
+			Password: hashedPassword,
 			Email: req.body.Email,
 			DOB: req.body.DOB
 		}
