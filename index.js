@@ -21,7 +21,7 @@ const users = Models.user;
 // mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });			
 
 // online
-//mongoose.connect('process.env.MONGODB_URI', { useNewUrlParser: true, useUnifiedTopology: true });		
+mongoose.connect('process.env.MONGODB_URI', { useNewUrlParser: true, useUnifiedTopology: true });		
 
 // middleware
 app.use(morgan('common'));
