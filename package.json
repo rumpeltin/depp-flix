@@ -27,8 +27,7 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "uuid": "^8.3.2",
-    "vercel": "^28.16.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "eslint": "^8.24.0"
