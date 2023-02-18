@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://depp-flix.vercel.app/'];
+let allowedOrigins = ['http://localhost:8080', 'https://depp-flix.vercel.app/'];
 
 app.use(cors({
   origin: (origin, callback) => {
