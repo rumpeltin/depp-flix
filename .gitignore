@@ -1,1 +1,6 @@
-.vercel
+# Mac OS
+.DS_Store
+
+# folder
+.idea/
+node_modules/

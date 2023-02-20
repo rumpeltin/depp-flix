@@ -156,10 +156,10 @@ app.post('/users',
  ], (req, res) => {
 	
 	// check validation object for errors
-//	let errors = validationResult(req);
-//	if (!errors.isEmpty()) {
-//		return res.status(422).json({ errors: errors.array() }); // the rest of the code will not execute if an error occurs
-//	}
+	let errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).json({ errors: errors.array() }); // the rest of the code will not execute if an error occurs
+	}
 	
 	let hashedPassword= users.hashPassword(req.body.Password);
 	users.findOne({ Username: req.body.Username }) // searches for a user with the requested username
