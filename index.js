@@ -19,10 +19,10 @@ const users = Models.user;
 // connect to database
 
 // local
-// mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });			
+// mongoose.connect('mongodb://localhost:27017/DeppFlix', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // online
-mongoose.connect(process.env.MONGODB_ENV, { useNewUrlParser: true, useUnifiedTopology: true });		
+ mongoose.connect(process.env.MONGODB_ENV, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // middleware
 app.use(morgan('common'));
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234', 'https://depp-flix.vercel.app/'];
+let allowedOrigins = ['http://localhost:8080', 'http://localhost:1234'];
 
 app.use(cors({
   origin: (origin, callback) => {
@@ -147,19 +147,19 @@ JSON format:
 } */
 
 app.post('/users',
-[
+ [
 	check('Username', 'Username is required').isLength({min: 4}),
 	check('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
 	check('Password', 'Password is required').not().isEmpty(),
 	check('Password', 'Password must be at least 6 characters').isLength({min: 6}),
 	check('Email', 'Email does not appear to be valid.').isEmail()
-], (req, res) => {
+ ], (req, res) => {
 	
 	// check validation object for errors
-	let errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(422).json({ errors: errors.array() }); // he rest of the code will not execute if an error occurs
-	} 
+//	let errors = validationResult(req);
+//	if (!errors.isEmpty()) {
+//		return res.status(422).json({ errors: errors.array() }); // the rest of the code will not execute if an error occurs
+//	}
 	
 	let hashedPassword= users.hashPassword(req.body.Password);
 	users.findOne({ Username: req.body.Username }) // searches for a user with the requested username
